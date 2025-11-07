@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get Your Dream Job</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f10, #11131a);
+      color: #f2f2f2;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .floating-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      filter: blur(60px);
+      mix-blend-mode: screen;
+      animation: floatCircles 20s linear infinite;
+    }
+
+    .circle:nth-child(1) { background: #00ffe7; width: 120px; height: 120px; top: 20%; left: 30%; animation-delay: 0s; }
+    .circle:nth-child(2) { background: #ff008c; width: 160px; height: 160px; top: 50%; left: 50%; animation-delay: 2s; }
+    .circle:nth-child(3) { background: #00b3ff; width: 130px; height: 130px; top: 10%; left: 80%; animation-delay: 4s; }
+    .circle:nth-child(4) { background: #ffeb3b; width: 100px; height: 100px; top: 70%; left: 20%; animation-delay: 6s; }
+    .circle:nth-child(5) { background: #00ffe7; width: 130px; height: 130px; top: 40%; left: 90%; animation-delay: 8s; }
+
+    @keyframes floatCircles {
+      0% { transform: translateY(0) translateX(0) scale(1); }
+      25% { transform: translateY(-20px) translateX(20px) scale(1.1); }
+      50% { transform: translateY(40px) translateX(-10px) scale(1.2); }
+      75% { transform: translateY(-30px) translateX(10px) scale(1.1); }
+      100% { transform: translateY(0) translateX(0) scale(1); }
+    }
+
+    header {
+      background-color: #0C0404;
+      padding: 3rem 0;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .header-img {
+      max-width: 30%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      padding: 8px 18px;
+      background-color: #00ffe7;
+      color: #11131a;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      z-index: 10;
+    }
+
+    .home-button:hover {
+      background-color: #00b3ff;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 40px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #000;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 280px;
+      height: 320px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,255,255,0.5);
+    }
+
+    .company-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #00FFCC;
+      margin-bottom: 10px;
+    }
+
+    .job-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ecf0f1;
+      margin-bottom: 10px;
+    }
+
+    .location, .skills {
+      margin: 8px 0;
+      color: #bdc3c7;
+    }
+
+    .skills span {
+      background-color: #34495e;
+      color: #ecf0f1;
+      font-size: 0.85rem;
+      padding: 4px 8px;
+      margin: 3px 4px 3px 0;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-weight: 600;
+      color: #ecf0f1;
+    }
+
+    footer {
+      background-color: #0C0404;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 10px;
+      margin-top: 40px;
+    }
+
+    .apply-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 18px;
+      background-color: #00ffe7;
+      color: #11131a;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+
+    .apply-button:hover {
+      background-color: #00b3ff;
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="floating-background">
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
+
+<header>
+  <img src="./assets/job_title.png" alt="Get Your Dream Job" class="header-img">
+  <a href="dashboard.html" class="home-button">← Dashboard</a>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div class="company-name">Tech Innovators</div>
+    <div class="job-title">Java Developer</div>
+    <div class="location"><span class="section-title">Location:</span> United States</div>
+    <div class="skills"><span class="section-title">Skills:</span> <span>Java</span> <span>Spring Boot</span> <span>SQL</span></div>
+    <button class="apply-button" onclick="applyJob('Tech Innovators', 'Java Developer')">Apply Now</button>
+  </div>
+
+  <div class="card">
+    <div class="company-name">CyberTech</div>
+    <div class="job-title">Security Engineer</div>
+    <div class="location"><span class="section-title">Location:</span> USA</div>
+    <div class="skills"><span class="section-title">Skills:</span> <span>PenTest</span> <span>Firewall</span> <span>Cybersecurity</span></div>
+    <button class="apply-button" onclick="applyJob('CyberTech', 'Security Engineer')">Apply Now</button>
+  </div>
+
+  <!-- ➕ You can add more job cards similarly -->
+</div>
+
+<footer>
+  <p>&copy; 2025 Get Your Dream Job. All rights reserved.</p>
+</footer>
+
+<!-- 🧠 Job Application Script -->
+<script>
+  function applyJob(company, jobTitle) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      alert("Please login first to apply.");
+      return;
+    }
+
+    fetch("http://127.0.0.1:8000/api/job/apply/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: user.id,
+        company: company,
+        job_title: jobTitle
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert(`✅ Successfully applied to ${jobTitle} at ${company}`);
+      } else {
+        alert("⚠️ " + (data.error || "Already applied or something went wrong."));
+      }
+    })
+    .catch(err => {
+      console.error("Error:", err);
+      alert("❌ Failed to apply.");
+    });
+  }
+</script>
+
+</body>
+</html>

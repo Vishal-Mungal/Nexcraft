@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Quiz Topic</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f10, #11131a);
+      color: #f2f2f2;
+      padding: 20px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      background-color: #0C0404;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #00ffe7;
+    }
+    header img {
+      height: 120px;
+      width: auto;
+    }
+    .dashboard-btn {
+      padding: 0.5rem 1rem;
+      background-color: #00ffe7;
+      color: #11131a;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .topics-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .topic-card {
+      background-color: #000;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+      border: 1px solid rgba(0, 255, 204, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .topic-card h2 {
+      color: #00ffe7;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+    .topic-card p {
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .btn {
+      padding: 0.6rem 1rem;
+      background-color: #00ffe7;
+      color: #11131a;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #00d6c7;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1><img src="./assets/quiz_title.png" alt="Quiz Title"></h1>
+  <a href="dashboard.html" class="dashboard-btn">Dashboard</a>
+</header>
+
+<div class="topics-container">
+  <div class="topic-card">
+    <h2>Java Basics</h2>
+    <p>Test your knowledge on Java fundamentals including variables, loops, and methods.</p>
+    <button class="btn" onclick="startQuiz('Java Basics', 'quiz-java-basics.html')">Start Quiz</button>
+  </div>
+
+  <div class="topic-card">
+    <h2>OOP Concepts</h2>
+    <p>Assess your grasp on OOP like inheritance, polymorphism, and encapsulation.</p>
+    <button class="btn" onclick="startQuiz('OOP Concepts', 'quiz-oop.html')">Start Quiz</button>
+  </div>
+
+  <div class="topic-card">
+    <h2>SQL Essentials</h2>
+    <p>Check your command over SQL queries, joins, and database operations.</p>
+    <button class="btn" onclick="startQuiz('SQL Essentials', 'quiz-sql.html')">Start Quiz</button>
+  </div>
+
+  <div class="topic-card">
+    <h2>Spring Boot</h2>
+    <p>Evaluate your Spring Boot knowledge – REST APIs, annotations, and more.</p>
+    <button class="btn" onclick="startQuiz('Spring Boot', 'quiz-springboot.html')">Start Quiz</button>
+  </div>
+</div>
+
+<script>
+  // Save selected quiz topic and go to quiz page
+  function startQuiz(topicName, pageLink) {
+    localStorage.setItem("selected_quiz", topicName);
+    window.location.href = pageLink;
+  }
+</script>
+
+</body>
+</html>

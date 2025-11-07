@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional Profile</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f10, #11131a);
+      color: #f2f2f2;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background-color: #0C0404;
+    }
+    header h1 img {
+      height: 100px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+    .dashboard-btn, .edit-btn {
+      padding: 0.6rem 1.2rem;
+      background-color: #00ffe7;
+      color: #11131a;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dashboard-btn:hover, .edit-btn:hover {
+      background-color: #00d6c7;
+    }
+    .profile-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #000;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+      border: 1px solid rgba(0, 255, 204, 0.2);
+    }
+    .card h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: #00ffe7;
+    }
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: block;
+      border: 3px solid #00ffe7;
+      object-fit: cover;
+    }
+    .info p {
+      margin: 0.5rem 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 5px 12px;
+      background: #00ffe7;
+      color: #11131a;
+      border-radius: 20px;
+      margin: 5px 5px 0 0;
+      font-size: 0.85rem;
+    }
+    a {
+      color: #00ffe7;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    footer {
+      background: #0C0404;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 40px;
+      color: #888;
+    }
+    input {
+      background: #1a1a1a;
+      color: #f2f2f2;
+      border: 1px solid #00ffe7;
+      padding: 5px;
+      border-radius: 5px;
+      margin: 4px 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1><img src="./assets/profile_title.png" alt="Profile Title"></h1>
+  <div class="btn-group">
+    <a href="dashboard.html" class="dashboard-btn">Go Back to Dashboard</a>
+    <button class="edit-btn" id="editButton">Edit Profile</button>
+  </div>
+</header>
+
+<div class="profile-container">
+  <div class="card">
+    <img src="./assets/profileph.jpg" alt="Profile Picture" class="profile-pic" id="profilePic">
+    <h2 id="name">Guest User</h2>
+    <p id="title" style="text-align:center;">AI Learner @ NEXCRAFT</p>
+  </div>
+
+  <div class="card">
+    <h2>Personal Info</h2>
+    <div class="info">
+      <p><strong>Email:</strong> <span id="email">Not logged in</span></p>
+      <p><strong>Skill Score:</strong> <span id="skill">N/A</span></p>
+      <p><strong>Courses Completed:</strong> <span id="courses">N/A</span></p>
+      <p><strong>Quiz Score:</strong> <span id="quiz">N/A</span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Skills</h2>
+    <div id="skills">
+      <span class="badge">Python</span>
+      <span class="badge">HTML</span>
+      <span class="badge">JavaScript</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Contact</h2>
+    <div class="info">
+      <p><strong>Phone:</strong> <span id="phone">+91 9999999999</span></p>
+      <p><strong>LinkedIn:</strong> <a href="#" id="linkedin">linkedin.com/in/yourname</a></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 NEXCRAFT. All rights reserved.
+</footer>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("user"));
+  let isEditing = false;
+
+  const editableFields = ['name', 'title', 'email'];
+
+  if (user) {
+    document.getElementById("name").textContent = user.name || "Anonymous";
+    document.getElementById("email").textContent = user.email || "Not provided";
+    document.getElementById("skill").textContent = user.skill_score + " / 100";
+    document.getElementById("courses").textContent = user.courses_completed + " completed";
+    document.getElementById("quiz").textContent = user.quiz_score + "%";
+  }
+
+  document.getElementById('editButton').addEventListener('click', () => {
+    isEditing = !isEditing;
+
+    if (isEditing) {
+      editButton.textContent = 'Save Profile';
+      editableFields.forEach(id => {
+        const element = document.getElementById(id);
+        const value = element.textContent;
+        element.innerHTML = `<input type="text" value="${value}">`;
+      });
+    } else {
+      editButton.textContent = 'Edit Profile';
+      editableFields.forEach(id => {
+        const element = document.getElementById(id);
+        const inputValue = element.querySelector('input').value;
+        element.textContent = inputValue;
+
+        if (user) {
+          if (id === 'name') user.name = inputValue;
+          if (id === 'email') user.email = inputValue;
+        }
+      });
+
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+        alert("Profile updated locally ✅");
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

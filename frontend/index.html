@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexcraft — AI-Powered Workforce Accelerator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Arimo:ital,wght@0,400..700;1,400..700&family=Capriola&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Mukta:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+FR+Moderne&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0f10, #11131a);
+      color: #f2f2f2;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .floating-background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.5;
+      filter: blur(60px);
+      animation: floatCircles infinite alternate ease-in-out;
+    }
+    .circle:nth-child(1) { background: #00ffe7; width: 140px; height: 140px; top: 20%; left: 30%; animation-duration: 14s; }
+    .circle:nth-child(2) { background: #ff008c; width: 180px; height: 180px; top: 55%; left: 50%; animation-duration: 18s; }
+    .circle:nth-child(3) { background: #00b3ff; width: 160px; height: 160px; top: 10%; left: 80%; animation-duration: 20s; }
+
+    @keyframes floatCircles {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 80px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px 40px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo img {
+      width: 80px;
+      border-radius: 10px;
+    }
+    .logo-text {
+      font-size: 36px;
+      font-weight: 700;
+      color: #00ffe7;
+    }
+    .tagline-header {
+      font-size: 14px;
+      color: b14bf7;
+      letter-spacing: 1.2px;
+      margin-top: 60px;
+      font-weight: 500;
+      text-transform: uppercase;
+      opacity: 0; /* Initially hidden */
+      transform: scale(0.8); /* Initially scaled down */
+      animation: popIn 1s forwards; /* Animation with 1s duration and forwards to keep the final state */
+    }
+    
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1); /* Final size */
+      }
+    }
+    
+
+    .hero {
+      padding: 120px 20px 100px;
+      text-align: center;
+      background: linear-gradient(rgba(15,15,16,0.8), rgba(15,15,16,0.8)), url('https://images.unsplash.com/photo-1612895980727-98a06b5d2519?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
+      border-radius: 0 0 40px 40px;
+    }
+    .hero h1 {
+      font-size: 56px;
+      max-width: 860px;
+      margin: 0 auto 24px;
+    }
+    .hero p {
+      font-size: 20px;
+      max-width: 720px;
+      margin: 0 auto 40px;
+      color: #ddd;
+    }
+    .cta-btn {
+      padding: 16px 36px;
+      background: linear-gradient(135deg, #00ffe7, #00b3ff);
+      color: #0f0f10;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cta-btn:hover {
+      background: #0cfce0;
+      transform: translateY(-3px);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      padding: 80px 10%;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      padding: 80px 10%;
+      perspective: 1000px; /* for 3D effect */
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      padding: 80px 10%;
+    }
+    
+    .feature-card {
+      perspective: 1000px;
+    }
+    
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    
+    .feature-card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+    
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background: rgba(26,26,29,0.8);
+      border: 1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    
+    .card-front h3 {
+      color: #00ffe7;
+      font-size: 24px;
+    }
+    
+    .card-back {
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, rgba(0,0,0,0.8), rgba(20,20,20,0.9));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    
+    .card-back p {
+      color: #f0f0f0;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.6;
+      text-shadow: 0 0 5px rgba(0, 255, 230, 0.3);
+      padding: 20px;
+      animation: popText 0.6s ease forwards;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    
+    /* When flipped, trigger animation */
+    .feature-card:hover .card-back p {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    /* Define the animation */
+    @keyframes popText {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    
+
+    .about, .contact {
+      padding: 80px 10%;
+      text-align: center;
+    }
+    .about h2, .contact h2 {
+      font-size: 34px;
+      color: #00ffe7;
+      margin-bottom: 20px;
+    }
+    .about p, .contact p {
+      font-size: 18px;
+      color: #ccc;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(to right, #0f0f10, #1a1a1d);
+      color: #888;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 38px; }
+      .hero p { font-size: 16px; }
+      .logo-text { font-size: 28px; }
+      .tagline-header { font-size: 12px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="floating-background">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <header>
+    <div class="logo">
+      <img src="./assets/logo.png" alt="Nexcraft Logo">
+      <div>
+        <div class="logo-text">NEXCRAFT</div>
+      </div>
+      <div class="tagline-header"><img src="./assets/upskill.png" alt="" style="width: 150px;"></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Your AI-Powered Path to a Smarter Tech Career</h1>
+    <p>Nexcraft accelerates your career growth with AI-driven skill analysis, dynamic learning paths, and smart job recommendations tailored just for you.</p>
+    <a href="login.html" target="_blank" class="cta-btn">Get Started</a>
+  </section>
+
+  <section class="features" id="features">
+    <div class="feature-card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h3>⚡ Skill Gap Analyzer</h3>
+        </div>
+        <div class="card-back">
+          <p>Analyze resumes, LinkedIn profiles, and quizzes to detect real-time skill gaps for your target tech roles.</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="feature-card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h3>📚 Dynamic Learning Paths</h3>
+        </div>
+        <div class="card-back">
+          <p>AI-powered curriculum suggestions based on the latest tech trends, job demands, and your career goals.</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="feature-card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h3>🎯 Smart Job Recommendations</h3>
+        </div>
+        <div class="card-back">
+          <p>Get matched with relevant job opportunities based on your evolving skills and ambitions.</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="feature-card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h3>📊 Interactive Dashboard</h3>
+        </div>
+        <div class="card-back">
+          <p>Track skill maps, course progress, AI insights, and career matches — all in one personalized dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="about" id="about">
+    <h2>About Nexcraft</h2>
+    <p>At Nexcraft, we believe in empowering every learner to become future-ready. Our AI-first approach tailors learning experiences uniquely suited to you, bridging the gap between education and employment.</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: support@nexcraft.ai | Phone: +91-9421703536 </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Nexcraft | Made for the future of tech talent.
+  </footer>
+
+</body>
+
+</html>
